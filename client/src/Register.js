@@ -28,6 +28,9 @@ const Register = () => {
         } catch (error) {
             if(error.response.status === 401){
                 alert("invalid credentials");
+                setEmail('')
+                setUsername('')
+                setPassword('')
             }
         }
     }
@@ -55,7 +58,7 @@ const Register = () => {
             <div>
                 <h3>password</h3>
                 <input
-                    type='text'
+                    type='password'
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                 />

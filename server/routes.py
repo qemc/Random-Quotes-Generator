@@ -111,3 +111,13 @@ def login():
         'email': user.email,
         'id': user.id
     })
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    
+    session.pop('user_id', None)
+    
+    return jsonify({
+        "user_status": "Logged out"
+    })
