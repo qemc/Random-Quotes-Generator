@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {User, Quot} from './helpers/types';
+import useCurrentUser from "./helpers/GetUser";
 
 const api = axios.create({
   baseURL: "http://localhost:5000",
@@ -9,20 +11,11 @@ const api = axios.create({
 });
 
 const Home = () => {
-  const quot = {
-    author: String,
-    category: String,
-    quote: String,
-  };
 
-  const currentUser = {
-    username: String,
-    email: String,
-    id: String,
-  };
+  const [quote, setQuote] = useState(Quot);
 
-  const [quote, setQuote] = useState(quot);
-  const [loggedUser, setLoggedUser] = useState(currentUser);
+  const loggedUser = useCurrentUser(quote);
+
 
   useEffect(() => {
     try {
@@ -31,18 +24,6 @@ const Home = () => {
           author: response.data.author,
           category: response.data.category,
           quote: response.data.quote,
-        }));
-      });
-    } catch (error) {
-      console.log(error);
-    }
-
-    try {
-      api.get("/@me").then((response) => {
-        setLoggedUser((quot) => ({
-          username: response.data.username,
-          email: response.data.email,
-          id: response.data.id,
         }));
       });
     } catch (error) {
@@ -58,8 +39,11 @@ const Home = () => {
       console.log(error)
     }
   }
+  
+  // if (loggedUser === User) {
+  //   console.log("yeah, it is equal to null")
+  // }
 
-  console.log(quote);
 
   return (
     <div>

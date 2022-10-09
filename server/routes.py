@@ -4,7 +4,6 @@ from server.models import Quote, User
 import random
 
 
-
 @app.route("/@me")
 def get_current_user():
     user_id = session.get('user_id')
