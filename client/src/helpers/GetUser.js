@@ -8,14 +8,10 @@ const api = axios.create({
     withCredentials: true,
 });
   
-
-
-const useCurrentUser = (quote) => {
+const useCurrentUser = () => {
 
     const [loggedUser, setLoggedUser] = useState(User);
-    
     useEffect(() => {
-        
         try {
             api.get("/@me").then((response) => {
               setLoggedUser((quot) => ({
@@ -28,8 +24,7 @@ const useCurrentUser = (quote) => {
             console.log(error);
         }
 
-    }, [quote]);
-
+    }, []);
     return  loggedUser
     
 }

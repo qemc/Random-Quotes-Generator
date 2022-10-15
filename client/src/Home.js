@@ -14,7 +14,7 @@ const Home = () => {
 
   const [quote, setQuote] = useState(Quot);
 
-  const loggedUser = useCurrentUser(quote);
+  const loggedUser = useCurrentUser();
 
 
   useEffect(() => {
@@ -39,24 +39,32 @@ const Home = () => {
       console.log(error)
     }
   }
-  
-  // if (loggedUser === User) {
-  //   console.log("yeah, it is equal to null")
-  // }
 
 
   return (
     <div>
-      <h2>{quote.author}</h2>
-      <h2>{quote.quote}</h2>
-      <h2>{quote.category}</h2>
-      <br />
-      <h1>you are logged as : {loggedUser.username}</h1>
-      <h1>with ID : {loggedUser.id}</h1>
+      
 
-      <Link to='/register'><button>register</button></Link>
-      <Link to='/login'><button>login</button></Link>
-      <button type="button" onClick={logOut}>logout</button>
+
+      {loggedUser != User ? (
+        <div> 
+          <h2>{quote.author}</h2>
+          <h2>{quote.quote}</h2>
+          <h2>{quote.category}</h2>
+          <br />
+          <h1>you are logged as : {loggedUser.username}</h1>
+          <h1>with ID : {loggedUser.id}</h1>
+          <button type="button" onClick={logOut}>logout</button>
+        </div>
+        
+      ) : (
+          <div>
+            <Link to='/register'><button>register</button></Link>
+            <Link to='/login'><button>login</button></Link>
+          </div>
+      )}
+      
+
     </div>
   );
 };

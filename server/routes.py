@@ -22,7 +22,12 @@ def get_current_user():
 
 @app.route("/", methods=['GET'])
 def home():
-
+    
+    user_id = session.get('user_id')
+    
+    if not user_id:
+        return jsonify({"error": "Unauthorized me"}), 401
+    
     id_to_display = random.randint(1, 96124)
     display = Quote.query.filter_by(id=id_to_display).first()
 
@@ -120,3 +125,8 @@ def logout():
     return jsonify({
         "user_status": "Logged out"
     })
+    
+    
+# @app.route('/like', methods=['POST'])
+# def like():
+    
