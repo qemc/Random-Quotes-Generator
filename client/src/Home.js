@@ -16,6 +16,8 @@ const Home = () => {
 
   const loggedUser = useCurrentUser();
 
+  
+  const [liked, setLiked] = useState(false) 
 
   useEffect(() => {
     try {
@@ -24,12 +26,17 @@ const Home = () => {
           author: response.data.author,
           category: response.data.category,
           quote: response.data.quote,
+          is_liked: response.data.is_liked
         }));
+        setLiked(response.data.is_liked)
       });
+      api.post('/like')
+
     } catch (error) {
       console.log(error);
     }
   }, []);
+
 
   const logOut = () => {
     try {
@@ -40,12 +47,18 @@ const Home = () => {
     }
   }
 
+  const like = () => {
+    setLiked(true);
+  }
+  
+  const next = () => {
+    window.location = '/';
+  }
+
+
 
   return (
     <div>
-      
-
-
       {loggedUser != User ? (
         <div> 
           <h2>{quote.author}</h2>
@@ -55,6 +68,18 @@ const Home = () => {
           <h1>you are logged as : {loggedUser.username}</h1>
           <h1>with ID : {loggedUser.id}</h1>
           <button type="button" onClick={logOut}>logout</button>
+          <button type="button" onClick={like}>like this quote</button>
+          <button type="button" onClick={next}>next quote</button>
+
+          {liked === true ? (
+            <div>
+              <h4>quote is liked</h4>
+            </div>
+          ) : (
+            <div>
+              <h4>quote is not liked</h4>             
+            </div>
+          )}
         </div>
         
       ) : (
@@ -63,8 +88,6 @@ const Home = () => {
             <Link to='/login'><button>login</button></Link>
           </div>
       )}
-      
-
     </div>
   );
 };

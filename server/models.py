@@ -1,5 +1,6 @@
 from server import db
 from uuid import uuid4
+from server import ma
 
 
 class Quote(db.Model):
@@ -26,3 +27,8 @@ class Liked(db.Model):
     id = db.Column(db.Integer(), primary_key=True, unique=True)
     user_id = db.Column(db.Text())
     quote_id = db.Column(db.Integer())
+
+
+class LikedSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Liked

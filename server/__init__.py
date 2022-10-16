@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from flask_session import Session
 from server.config import ApplicationConfig
@@ -9,6 +10,7 @@ from server.config import ApplicationConfig
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 db = SQLAlchemy(app)
+ma = Marshmallow(app)
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 server_session = Session(app)

@@ -8,6 +8,7 @@ const Quot = {
     author: String,
     category: String,
     quote: String,
+    is_liked: Boolean
 }
 
 export {User, Quot}
