@@ -70,6 +70,7 @@ const Home = () => {
           <button type="button" onClick={logOut}>logout</button>
           <button type="button" onClick={like}>like this quote</button>
           <button type="button" onClick={next}>next quote</button>
+          <Link to={'/liked'}><button type="button" >view liked quotes</button></Link>
 
           {liked === true ? (
             <div>

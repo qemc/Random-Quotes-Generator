@@ -1,6 +1,10 @@
 from email.quoprimime import quote
 from genericpath import exists
 import json
+import string
+from tokenize import String
+
+from numpy import integer
 from server import app, bcrypt, db
 from flask import jsonify, request, session
 from server.models import Quote, User, Liked, LikedSchema
@@ -173,7 +177,7 @@ def like():
     
     
 
-@app.route('/get_liked', methods=['GET'])
+@app.route('/get_liked', methods=['GET', 'POST'])
 def get_liked():
     
     current_user = session.get('user_id')   
@@ -181,27 +185,22 @@ def get_liked():
     if not current_user:
         return jsonify({"error": "Unauthorized me"}), 401
 
-    #here will be functionality that finds liked quotes based on its id, and returns all liked quotes as json to client
-
     liked_quotes = Liked.query.filter_by(user_id = current_user).all()
-    
-    
     quotes = []
     for item in liked_quotes:
-        quotes.append(item.quote_id)
+        quotee = Quote.query.filter_by(id = int(item.quote_id)).first()
+        quote = {
+            "id":quotee.id,
+            "quote": quotee.quote,
+            "author": quotee.author,
+            "category": quotee.category 
+        }
+        quotes.append(quote)
         
-    print(quotes)
-    e = Quote.query.filter_by(id =22323).first()
-    
-    f_quotesb = []
-    for element in quotes:
-       
-        print(e)
-    
-  
     liked_schema = LikedSchema(many=True)
     output = liked_schema.dump(quotes)
     
-    return jsonify(output)
+    
+    return jsonify(quotes)
     
     
