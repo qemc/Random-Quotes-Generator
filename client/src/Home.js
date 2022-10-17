@@ -20,6 +20,7 @@ const Home = () => {
   const [liked, setLiked] = useState(false) 
 
   useEffect(() => {
+    
     try {
       api.get("/").then((response) => {
         setQuote((quot) => ({
@@ -30,12 +31,12 @@ const Home = () => {
         }));
         setLiked(response.data.is_liked)
       });
-      api.post('/like')
+  
 
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  },[]);
 
 
   const logOut = () => {
@@ -49,11 +50,13 @@ const Home = () => {
 
   const like = () => {
     setLiked(true);
+    api.post('/like')
   }
   
   const next = () => {
     window.location = '/';
   }
+
 
 
 
@@ -70,7 +73,7 @@ const Home = () => {
           <button type="button" onClick={logOut}>logout</button>
           <button type="button" onClick={like}>like this quote</button>
           <button type="button" onClick={next}>next quote</button>
-          <Link to={'/liked'}><button type="button" >view liked quotes</button></Link>
+          <Link to={'/liked'}><button type="button">view liked quotes</button></Link>
 
           {liked === true ? (
             <div>

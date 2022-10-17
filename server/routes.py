@@ -1,14 +1,8 @@
-from email.quoprimime import quote
-from genericpath import exists
-import json
-import string
-from tokenize import String
-
-from numpy import integer
 from server import app, bcrypt, db
 from flask import jsonify, request, session
-from server.models import Quote, User, Liked, LikedSchema
+from server.models import Quote, User, Liked
 import random
+
 
 
 @app.route("/@me")
@@ -36,7 +30,11 @@ def home():
     if not user_id:
         return jsonify({"error": "Unauthorized me"}), 401
     
+    
     id_to_display = random.randint(1, 96124)
+    
+    
+    
     display = Quote.query.filter_by(id=id_to_display).first()
     
     chk_relation = Liked.query.filter_by(user_id = user_id, quote_id = id_to_display).first() is not None
@@ -197,10 +195,25 @@ def get_liked():
         }
         quotes.append(quote)
         
-    liked_schema = LikedSchema(many=True)
-    output = liked_schema.dump(quotes)
+
+
     
     
     return jsonify(quotes)
     
     
+@app.route('/delete_like', methods=['POST'])
+def dislike():
+    
+    current_user = session.get('user_id')     
+    id_to_delete = request.json['id']
+
+    if not current_user:
+        return jsonify({"error": "Unauthorized me"}), 401
+
+    Liked.query.filter_by(quote_id = id_to_delete, user_id = current_user).delete()
+    db.session.commit()
+    
+    return jsonify ({
+        "deleted_id": id_to_delete,
+    })

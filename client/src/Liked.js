@@ -13,8 +13,12 @@ const api = axios.create({
 
 const Liked = () => {
 
-    const [quotes, setQuote] = useState([])
-    const [isLiked, setIsLiked] = useState(true)
+  const [quotes, setQuote] = useState([])
+
+  const [isLiked, setIsLiked] = useState(true)
+  
+  const [id, setToDelete] = useState('')
+
 
     useEffect(() => {
         //in progrsss
@@ -26,15 +30,37 @@ const Liked = () => {
             console.log(error);
           }
 
-    },[])
+    }, [])
+  
+  const deleteLike = async () => {
+    try {
+        const response = await api.post("/delete_like", {
+        id,
+      });
+      
+      window.location.href = "/liked";
+      
+      } catch (error) {
+      
+        console.log(error)
+      
+      }
+    }
+  
 
-  console.log(quotes);
+  
+  
     return ( 
         <div>
           {quotes.map(quote => (
-          <div className="blog-preview" key={quote.id} >
-                <h2>{ quote.quote }</h2>
-                <p>Written by { quote.author }</p>
+          <div className="blog-preview" key={quote.id}>
+              <h2>{ quote.quote }</h2>
+              <p>Written by {quote.author}</p>
+              <button type='button' onClick={() => {
+                setToDelete(quote.id);
+                deleteLike();
+                
+              }}> delete </button>
           </div>
           ))}
         </div>
