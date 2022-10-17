@@ -20,12 +20,8 @@ const Liked = () => {
         //in progrsss
         try {
           api.get("/get_liked").then((response) => {
-              
               setQuote(response.data)
-
-              
             });
-      
           } catch (error) {
             console.log(error);
           }
@@ -33,7 +29,6 @@ const Liked = () => {
     },[])
 
   console.log(quotes);
-
     return ( 
         <div>
           {quotes.map(quote => (
