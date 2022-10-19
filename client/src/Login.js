@@ -1,6 +1,8 @@
+import './styles/Login.css'
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+
 
 const api = axios.create({
   baseURL: 'http://localhost:5000',
@@ -38,12 +40,14 @@ const Login = () => {
           value={login}
           onChange={(e) => setLogin(e.target.value)}
         />
-        <h3 className='password-label'>Ppassword</h3>
+        <h3 className='password-label'>Password</h3>
         <input
           className='password-input'
           type="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
+
         />
         <button
           type="button"
