@@ -136,7 +136,7 @@ def login():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    
+    print("xddddddddddddddddddddddd")
     session.pop('user_id', None)
     
     return jsonify({

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import './styles/Home.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { User, Quot } from './helpers/types'
@@ -83,13 +84,15 @@ const Home = () => {
           )}
         </div>
       ) : (
-        <div>
-          <Link to="/register">
-            <button>register</button>
-          </Link>
-          <Link to="/login">
-            <button>login</button>
-          </Link>
+        <div className='container-starting-page'>
+          <form className='starting-form'>
+            <Link to="/register">
+              <button className='register-button'>register</button>
+            </Link>
+            <Link to="/login">
+              <button className='login-button'>login</button>
+            </Link>
+          </form>
         </div>
       )}
     </div>
