@@ -16,7 +16,9 @@ const Home = () => {
   const [liked, setLiked] = useState(false)
   const loggedUser = useCurrentUser()
 
-  useEffect(() => {
+
+
+  const get = () => {
     try {
       api.get('/').then((response) => {
         setQuote((quot) => ({
@@ -30,12 +32,15 @@ const Home = () => {
     } catch (error) {
       console.log(error)
     }
-  }, [])
+  }
+
+  useEffect(get, [])
 
   const logOut = () => {
     try {
       api.post('/logout')
-      window.location.href = '/'
+      window.location.reload();
+      //window.location.href = '/'
     } catch (error) {
       console.log(error)
     }
@@ -47,16 +52,16 @@ const Home = () => {
   }
 
   const next = () => {
-    window.location = '/'
+    get()
   }
 
   return (
     <div>
       {loggedUser != User ? (
         <div>
-          <h2>{quote.author}</h2>
-          <h2>{quote.quote}</h2>
-          <h2>{quote.category}</h2>
+          <h2 className='author'>{quote.author}</h2>
+          <h2 className='quote'>{quote.quote}</h2>
+          <h2 className='category'>{quote.category}</h2>
           <br />
           <h1>you are logged as : {loggedUser.username}</h1>
           <h1>with ID : {loggedUser.id}</h1>
@@ -85,12 +90,13 @@ const Home = () => {
         </div>
       ) : (
         <div className='container-starting-page'>
+          <h1>WELECOME</h1>
           <form className='starting-form'>
             <Link to="/register">
-              <button className='register-button'>register</button>
+              <button className='register-button button'>register</button>
             </Link>
             <Link to="/login">
-              <button className='login-button'>login</button>
+              <button className='login-button button'>login</button>
             </Link>
           </form>
         </div>
