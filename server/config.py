@@ -4,9 +4,9 @@ class ApplicationConfig():
 
     SECRET_KEY = '6be575743c714c0250e548de'
     #laptop
-    SQLALCHEMY_DATABASE_URI =  'sqlite:///C:/Users/Grzegorz/Documents/Porg/quotesv2/server/db.db'  
+   # SQLALCHEMY_DATABASE_URI =  'sqlite:///C:/Users/Grzegorz/Documents/Porg/quotesv2/server/db.db'  
     #PC  
-    #SQLALCHEMY_DATABASE_URI =  'sqlite:///db.db' 
+    SQLALCHEMY_DATABASE_URI =  'sqlite:///db.db' 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
 

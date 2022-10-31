@@ -2,6 +2,7 @@ import './styles/Login.css'
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import Button from './Button'
 
 
 const api = axios.create({
@@ -20,7 +21,8 @@ const Login = () => {
         password,
       })
 
-      window.location.href = '/'
+      //tutaj będzie zmiana z home na nowy komponent
+      window.location.href = '/home'
     } catch (error) {
       if (error.response.status === 401) {
         alert('invalid credentials')
@@ -33,6 +35,7 @@ const Login = () => {
   return (
     <div className='container-login'>
       <form className='login-form'>
+  
         <h3 className='login-label'>Login</h3>
         <input
           className='login-input'
@@ -48,17 +51,13 @@ const Login = () => {
           value={password}
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
-
         />
-        <button
-          type="button"
+        <Button 
           onClick={loginUser}
-          className='login-button'
-        >
-            
-          {' '}
-          Log In
-        </button>
+          type="button"
+          buttonStyle="btn--primary--outline"
+          buttonSize="btn--medium"
+        >Login</Button>
       </form>
     </div>
   )

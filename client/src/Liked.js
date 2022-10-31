@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Quot } from './helpers/types'
 import axios from 'axios'
 import { Link, Route } from 'react-router-dom'
+import Button from './Button'
 
 const api = axios.create({
   baseURL: 'http://localhost:5000',
@@ -44,16 +45,17 @@ const Liked = () => {
         <div className='quote-container' key={quote.id}>
           <h2 className='qutote-quote'>{quote.quote}</h2>
           <p className='quote-author'>Written by {quote.author}</p>
-          <button
-            className='delete-quote-button'
+          <Button
+            onClick={deleteLike}
             type="button"
+            buttonStyle="btn--primary--solid"
+            buttonSize="btn--medium"
             onMouseOver={() => {
               setToDelete(quote.id)
             }}
-            onClick={deleteLike}
           >
-            delete{' '}
-          </button>
+            delete quote
+          </Button>
           <h5>{quote.id}</h5>
         </div>
       ))}

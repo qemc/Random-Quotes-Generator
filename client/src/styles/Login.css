@@ -20,18 +20,7 @@ body {
   align-self: center;
   margin-bottom: -1px;
 }
-.login-form > button{
-  font-size: 130%;
-  border: 1px black solid;
-  padding: 10px;
-  border-radius: 18px;
-  transition: 0.5s ;
-}
-.login-form >  button:hover{
-  background-color: rgb(211, 199, 199);
-  font-size: 150%;
-}
-
 .login-form > input{
   margin-top: 5px;
+  margin-bottom: 10px;
 }
