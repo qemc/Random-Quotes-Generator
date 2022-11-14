@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import Button from './Button'
+import Input from './Input'
 
 
 const api = axios.create({
@@ -34,8 +35,12 @@ const Login = () => {
 
   return (
     <div className='container-login'>
+      <Input 
+        inputStyle="input--clean--dark"
+        insputSize="input--small"
+        placeholder="XDDDDD"
+      ></Input>
       <form className='login-form'>
-  
         <h3 className='login-label'>Login</h3>
         <input
           className='login-input'

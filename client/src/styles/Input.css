@@ -1,0 +1,50 @@
+:root{
+    --light: rgb(204, 204, 204);
+    --dark: rgb(43, 38, 38);    
+}
+
+.input{
+    font-family:Arial, Helvetica, sans-serif;
+}
+.input--clean--light, select{
+    background-color: transparent;
+    border: var(--light) 3px solid;
+    border-radius: 10px;
+}
+.input--clean--dark{
+    background-color: var(--dark);
+    color: #f5f5f5;
+    border: var(--dark) 3px solid;
+    border-radius: 10px;
+}
+.input--dark--border,select{
+    background-color: var(--light);
+    border: var(--dark) 3px solid;
+    border-radius: 10px; 
+}
+.input--light--border,select{
+    background-color: var(--light);
+    border: var(--light) 3px solid;
+    border-radius: 10px; 
+}
+
+.input--big{
+    font-weight: 500;
+    font-size: 35px;
+    padding: 10px 20px;
+    margin: 10px;
+}
+.input--big{
+    font-weight: 500;
+    font-size: 25px;
+    padding: 7px 15px;
+    margin: 10px;
+
+}
+.input--small{
+    font-weight: 500;
+    font-size: 15px;
+    padding: 4px 8px;
+    margin: 10px;
+
+}
