@@ -17,13 +17,11 @@ const SIZES = [
 
 
 
-const Input = ({insputSize, inputStyle, children, placeholder }) => {
+const Input = ({onChange, insputSize, inputStyle, children, placeholder }) => {
 
 
     const checkInputStyle = STYLES.includes(inputStyle) ? inputStyle : STYLES[0];
     const checkInputSize = SIZES.includes(insputSize) ? insputSize : SIZES[0];
-
-
 
     return ( 
         <input
@@ -32,6 +30,7 @@ const Input = ({insputSize, inputStyle, children, placeholder }) => {
                 `input ${checkInputSize} ${checkInputStyle}`
             }
             placeholder = {placeholder}
+            onChange={onChange}
         >
         {children}    
         </input>

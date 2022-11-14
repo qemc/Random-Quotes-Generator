@@ -35,29 +35,24 @@ const Login = () => {
 
   return (
     <div className='container-login'>
-      <Input 
-        inputStyle="input--clean--dark"
-        insputSize="input--small"
-        placeholder="XDDDDD"
-      ></Input>
+
       <form className='login-form'>
         <h3 className='login-label'>Login</h3>
-        <input
-          className='login-input'
-          type="text"
-          placeholder='login'
-          value={login}
+        <Input 
+          inputStyle="input--clean--light"
+          insputSize="input--big"
+          placeholder="Login"
           onChange={(e) => setLogin(e.target.value)}
-        />
+      ></Input>
         <h3 className='password-label'>Password</h3>
-        <input
-          className='password-input'
-          type="password"
-          value={password}
-          placeholder="password"
+        <Input 
+          inputStyle="input--clean--light"
+          insputSize="input--big"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
-        />
+      ></Input>
         <Button 
+          className="Button"
           onClick={loginUser}
           type="button"
           buttonStyle="btn--primary--outline"

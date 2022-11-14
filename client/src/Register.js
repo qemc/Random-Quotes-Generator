@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './styles/Register.css'
+import Button from './Button'
+import Input from './Input'
 
 const api = axios.create({
   baseURL: 'http://localhost:5000',
@@ -32,38 +34,47 @@ const Register = () => {
     }
   }
 
+ 
   return (
     <div className='container-register'>
       <form className='register-form'>
         <div>
           <h3>Email</h3>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <Input 
+          inputStyle="input--clean--light"
+          insputSize="input--big"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+      ></Input>
         </div>
         <div>
-          <h3>username</h3>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <h3>Username</h3>
+          <Input 
+          inputStyle="input--clean--light"
+          insputSize="input--big"
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
+      ></Input>
         </div>
         <div>
-          <h3>password</h3>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <h3>Password</h3>
+          <Input 
+          inputStyle="input--clean--light"
+          insputSize="input--big"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+      ></Input>
         </div>
         <br />
         <div>
-          <button type="button" onClick={addUser}>
-            submit
-          </button>
+        <Button
+            onClick={addUser}
+            type="button"
+            buttonStyle="btn--primary--outline"
+            buttonSize="btn--medium"
+          >
+            Register
+          </Button>
         </div>
       </form>
     </div>
