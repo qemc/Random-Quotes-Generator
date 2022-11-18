@@ -59,6 +59,7 @@ const Register = () => {
         <div>
           <h3>Password</h3>
           <Input 
+          inputType="password"
           inputStyle="input--clean--light"
           insputSize="input--big"
           placeholder="Password"

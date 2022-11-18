@@ -46,6 +46,7 @@ const Login = () => {
       ></Input>
         <h3 className='password-label'>Password</h3>
         <Input 
+          inputType="password"
           inputStyle="input--clean--light"
           insputSize="input--big"
           placeholder="Password"

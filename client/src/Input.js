@@ -14,18 +14,24 @@ const SIZES = [
     "input--medium",
     "input--small",
 ];
+const TYPES = [
+    "text",
+    "password",
+];
 
 
 
-const Input = ({onChange, insputSize, inputStyle, children, placeholder }) => {
+const Input = ({onChange,inputType, insputSize, inputStyle, children, placeholder }) => {
 
 
     const checkInputStyle = STYLES.includes(inputStyle) ? inputStyle : STYLES[0];
     const checkInputSize = SIZES.includes(insputSize) ? insputSize : SIZES[0];
+    const checkInputType = TYPES.includes(inputType) ? inputType : TYPES[0];
+
 
     return ( 
         <input
-            type="text"
+            type={checkInputType}
             className={
                 `input ${checkInputSize} ${checkInputStyle}`
             }
